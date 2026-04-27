@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace PHPdot\Container\Swoole;
 
 use ArrayObject;
-use PHPdot\Container\Context\ContextInterface;
+use PHPdot\Contracts\Container\ContextInterface;
 use RuntimeException;
 use Swoole\Coroutine;
 

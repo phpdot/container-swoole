@@ -5,7 +5,8 @@
     "license": "MIT",
     "require": {
         "php": ">=8.3",
-        "phpdot/container": "^1.0",
+        "phpdot/container": "^1.4",
+        "phpdot/contracts": "^1.2",
         "ext-swoole": ">=5.0"
     },
     "require-dev": {
