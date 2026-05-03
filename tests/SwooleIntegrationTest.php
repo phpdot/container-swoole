@@ -323,7 +323,6 @@ final class SwooleIntegrationTest extends TestCase
     {
         return (new ContainerBuilder())
             ->withContextProvider(new SwooleContextProvider())
-            ->withDefaultScope(Scope::SCOPED)
             ->withScopeValidation(false)
             ->addDefinitions($definitions)
             ->build();

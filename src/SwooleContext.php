@@ -15,11 +15,13 @@ declare(strict_types=1);
 namespace PHPdot\Container\Swoole;
 
 use ArrayObject;
+use Closure;
+use PHPdot\Contracts\Container\ContextDestroyInterface;
 use PHPdot\Contracts\Container\ContextInterface;
 use RuntimeException;
 use Swoole\Coroutine;
 
-final class SwooleContext implements ContextInterface
+final class SwooleContext implements ContextInterface, ContextDestroyInterface
 {
     /**
      * Get the current coroutine's context ArrayObject.
@@ -68,6 +70,19 @@ final class SwooleContext implements ContextInterface
     public function unset(string $id): void
     {
         unset($this->context()[$id]);
+    }
+
+    /**
+     * Register a callback to fire at the end of the current coroutine.
+     *
+     * Delegates to Swoole's Coroutine::defer, which invokes registered
+     * callbacks in LIFO order when the coroutine exits.
+     *
+     * @param Closure(): void $callback
+     */
+    public function onDestroy(Closure $callback): void
+    {
+        Coroutine::defer($callback);
     }
 
     /**
